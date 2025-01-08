@@ -37,6 +37,14 @@ def receive_data(request):
 
 def get_data(request):
     if request.method == "GET":
-        # Obtener solo los campos `id` y `respuesta_bot` de todos los registros
-        data = list(BotData.objects.values('id', 'respuesta_bot'))
+        # Obtener todos los campos del modelo
+        data = list(BotData.objects.values(
+            'id', 
+            'idsig', 
+            'tipo_doc', 
+            'numero_doc', 
+            'numero_tele', 
+            'operadora', 
+            'respuesta_bot'
+        ))
         return JsonResponse(data, safe=False)
